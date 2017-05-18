@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="sample.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="sample.js"></script>
+<style type="text/css">
+    /* Some custom styles to beautify this example */
+
+</style>
+<body>
+<div class="container-fluid">
+  <span class="mnuHeder">Fruits</span>
+  
+  <div class="row header" ng-app="myApp" ng-controller="myCtrl">
+    <div class="col-sm-9 itmMenu">
+    	 <div >
+				<div ng-if="Items" ng-repeat="x in Items">
+    				  <div class="col-sm-3">
+						 <div class="demo-content">
+              			 	 <div class="bg-alt">
+          						 <img src="{{ x.imgSrc }}" class="imgSpecific"/>
+     					  	</div>
+              			 	 <div class="bg-alt itemName">
+          						 {{ x.itemName }}
+     					  	</div>
+      						<div class="bg-alt">
+          						 <span class="price">${{ x.price }} </span>  <span class="stock">{{ x.quantityRemaining }} In Stock </span>
+      						</div>
+      						<div class="bg-alt">
+          						 <div class="addToCart" ng-click="addToCart(x)"> Add to Cart </div>
+      						</div>
+              			  </div>
+            		 </div>
+    				  
+    			</div>
+		 </div>
+    </div>
+    <div class="col-sm-3 rightPanel" ng-if="addToCartItems.length > 0">
+     
+     <div class="rPanel-header-first">
+           Shopping Cart						
+     </div>
+     <div class="rPanel-items-count">
+           {{addToCartItems.length}} items						
+     </div>
+     <div class="rpanel-selected-items" ng-repeat="y in addToCartItems">
+         //child and repetative entity
+     <div class="rPanel-item">
+           <span class="span-inline-img"><img src="{{ y.imgSrc }}" width="60px" height="60px" /></span> <span class="span-inline"><span class="operator" ng-click="operatingItems(y,'decrement')">-</span><span class="reqItems">{{y.noOfReqItems}} </span><span class="operator" ng-click="operatingItems(y,'increment')" >+</span></span>
+     	<div class="rPanel-header">
+           <span class="pull-left itemPrice"> @ ${{ y.price }}each = {{y.noOfReqItems * y.price}} </span> <span class="pull-right deleteBtn" ng-click="deleteItem(y,'decrement')"> Delete </span>
+     	</div>
+     </div>
+     
+     </div>
+     <div class="rpanel-total-container">
+     <div class="rpanel-total">
+     	<span class="pull-left emptyCart" ng-click="emptyCart()"> Empty Cart </span> <span class="pull-right totalPrice"> Total:${{totalPrice}} </span>	
+     </div>
+     <div class="rpanel-confirm" ng-click="emptyCart()">
+     	Confirm Purchase
+     </div>
+     </div>
+     
+  </div>
+</div>
+
+
+<script>
+
+</script>
+
+</body>
+</html>
